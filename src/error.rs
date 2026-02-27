@@ -18,6 +18,8 @@ pub enum AppError {
     Database(String),
     #[error("internal error: {0}")]
     Internal(String),
+    #[error("{0}")]
+    SkillInstaller(#[from] skillinstaller::InstallerError),
 }
 
 impl AppError {
@@ -31,6 +33,7 @@ impl AppError {
             Self::RateLimit(_) => "RATE_LIMIT",
             Self::Database(_) => "DATABASE",
             Self::Internal(_) => "INTERNAL",
+            Self::SkillInstaller(_) => "SKILL_INSTALLER",
         }
     }
 }

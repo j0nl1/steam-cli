@@ -1,4 +1,5 @@
 use clap::{ArgAction, Args, Parser, Subcommand, ValueEnum};
+use skillinstaller::InstallSkillArgs;
 
 #[derive(Debug, Clone, Copy, ValueEnum)]
 pub enum OutputFormatArg {
@@ -29,6 +30,7 @@ pub enum Commands {
     Search(SearchArgs),
     App(AppArgs),
     User(UserCommand),
+    InstallSkill(InstallSkillArgs),
 }
 
 #[derive(Debug, Args)]

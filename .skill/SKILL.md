@@ -1,4 +1,9 @@
-# SKILL.md - steam-cli (Rust)
+---
+name: steam-cli
+description: Use this skill when you need Steam discovery primitives for tags, genres, categories, store search, app details, and optional user-owned library signals.
+---
+
+# steam-cli
 
 ## What this skill does
 
@@ -9,10 +14,6 @@ It exposes stable primitives (no recommendation engine) so an LLM can:
 - compose Steam Store searches
 - fetch structured app details
 - optionally enrich with user library + playtime (Steam Web API)
-
-## Read when
-
-Use this skill when you need Steam discovery primitives with deterministic JSON output.
 
 ## Requirements
 

@@ -71,7 +71,6 @@ steam-cli app 413150 --ttl-sec 86400
 export STEAM_API_KEY="your_key_here"
 steam-cli user owned --vanity gaben
 steam-cli user owned --steamid 76561197960287930 --limit 50
-```
 
 ## Commands
 
@@ -119,6 +118,21 @@ steam-cli app <appid> [--ttl-sec 86400]
 steam-cli user owned --steamid <id> [--limit N] [--offset M]
 steam-cli user owned --vanity <name> [--limit N] [--offset M]
 ```
+
+### Install skill (interactive or flags)
+
+```bash
+steam-cli install-skill [--source <path>] [--providers <csv|*>] [--scope <project|user>] [--method <symlink|copy>] [--project-root <path>] [--force]
+```
+
+Notes:
+
+- If `--providers`, `--scope`, or `--method` are missing, the command prompts interactively.
+- Provider selection prompt supports keyboard multi-select (up/down + space + enter).
+- Interactive flow order: providers -> scope -> method -> summary -> confirm.
+- `project` scope defaults to current working directory unless `--project-root` is provided.
+- Fully non-interactive mode: provide `--providers`, `--scope`, and `--method`.
+- Providers that share `.agents/skills` are normalized to `universal` automatically.
 
 ## JSON mode
 

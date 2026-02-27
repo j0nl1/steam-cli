@@ -7,6 +7,11 @@ mod store;
 
 use clap::Parser;
 use serde::Serialize;
+use skillinstaller::rust_embed;
+use skillinstaller::{
+    InstallSkillArgs, install_interactive, load_embedded_skill, print_install_result,
+};
+
 use crate::cli::{
     AppArgs, Cli, Commands, DictSubcommands, OutputFormat, SearchArgs, UserOwnedArgs,
     UserSubcommands,
@@ -50,6 +55,10 @@ struct OwnedData {
     items: Vec<OwnedGame>,
 }
 
+#[derive(rust_embed::RustEmbed)]
+#[folder = ".skill"]
+struct SkillAssets;
+
 #[tokio::main]
 async fn main() {
     let cli = Cli::parse();
@@ -74,6 +83,7 @@ async fn run(cli: Cli, format: OutputFormat) -> Result<(), AppError> {
         Commands::User(cmd) => match cmd.action {
             UserSubcommands::Owned(args) => handle_user_owned(format, args).await,
         },
+        Commands::InstallSkill(args) => handle_install_skill(args),
     }
 }
 
@@ -230,6 +240,16 @@ async fn handle_user_owned(format: OutputFormat, args: UserOwnedArgs) -> Result<
         false,
         |d| print_owned_human(&d.steamid, &d.items),
     );
+
+    Ok(())
+}
+
+fn handle_install_skill(args: InstallSkillArgs) -> Result<(), AppError> {
+    let source = load_embedded_skill::<SkillAssets>();
+
+    let result = install_interactive(source, &args)?;
+
+    print_install_result(&result);
 
     Ok(())
 }
