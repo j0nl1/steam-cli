@@ -71,6 +71,7 @@ steam-cli app 413150 --ttl-sec 86400
 export STEAM_API_KEY="your_key_here"
 steam-cli user owned --vanity gaben
 steam-cli user owned --steamid 76561197960287930 --limit 50
+```
 
 ## Commands
 

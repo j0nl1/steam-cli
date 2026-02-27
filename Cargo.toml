@@ -2,6 +2,14 @@
 name = "steam-cli"
 version = "0.1.0"
 edition = "2024"
+description = "Local-first Steam CLI for tags, search, app details, and user library data."
+readme = "README.md"
+repository = "https://github.com/j0nl1/steam-cli"
+homepage = "https://github.com/j0nl1/steam-cli"
+documentation = "https://docs.rs/steam-cli"
+keywords = ["steam", "cli", "search", "api", "tooling"]
+categories = ["command-line-utilities", "api-bindings"]
+license = "MIT"
 
 [[bin]]
 name = "steam-cli"
